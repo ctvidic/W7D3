@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
         @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
         if @user
             login(@user)
+            flash.now[:errors] = ['ummm']
             redirect_to user_url(@user)
+            
         else
             flash.now[:errors] = ['Invalid credentials']
             render :new
